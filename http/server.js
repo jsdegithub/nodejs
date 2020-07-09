@@ -10,11 +10,7 @@ server.on('request', function (req, res) {
         fs.readFile('./hello.html', 'utf8', function (err, data) {
             res.end(data);
         })
-    } else if (url == '/img/lmy5.jpg') {
-        fs.readFile('.' + url, function (err, data) {
-            res.end(data);
-        })
-    } else if (url == '/index.js') {
+    } else {
         fs.readFile('.' + url, function (err, data) {
             res.end(data);
         })

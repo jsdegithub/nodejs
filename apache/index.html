@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 20px;
+            height: 20px;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>文件类型</th>
+                <th>名称</th>
+                <th>修改日期</th>
+                <th>大小</th>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.open('get', './itemlist');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                let data = JSON.parse(xhr.responseText);
+                let html = '';
+                for (let i = 0; i < data.length; i++) {
+                    html += '<tr>';
+                    html += '<td><img src="./icon/folder.png" alt=""></td>';
+                    html += '<td>' + data[i] + '</td>';
+                    html += '<td>2020-7-10</td>';
+                    html += '<td>100KB</td>';
+                    html += '</tr>';
+                }
+                document.getElementsByTagName("tbody")[0].innerHTML+=html;
+            }
+        }
+        xhr.send();
+    </script>
+</body>
+
+</html>

@@ -13,7 +13,33 @@ server.on('request', function (req, res) {
         })
     }else if(url=='/itemlist'){
         fs.readdir('./', function(err, files){
-            res.end(JSON.stringify(files));
+            let arr=[];
+            let count=0;
+            for(let i=0; i<files.length; i++){
+                let obj={};
+                fs.stat(files[i], function(err, data){
+                    // console.log(data);
+                    count++;
+                    let mtime=data['mtime'];
+                    // console.log(mtime);
+                    let size=data['size'];
+                    // console.log(size);
+                    obj.mtime=mtime;
+                    obj.size=size;
+                    arr.push(obj);
+                    if(count===files.length){
+                        console.log(arr);
+                        res.end(JSON.stringify(arr));
+                    }
+                    // console.log(obj);
+                });
+                // console.log(obj);
+                obj.name=files[i];
+                // console.log(obj);
+                
+            }
+            // console.log(arr);
+            
         })
     }else{
         url='.'+url;

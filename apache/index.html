@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body{
+            background-color: whitesmoke;
+        }
         img {
             width: 20px;
             height: 20px;
@@ -18,23 +21,40 @@
         img {
             vertical-align: middle;
         }
+
+        .outer-container {
+            display: flex;
+            justify-content: space-around;
+        }
+        .tb{
+            position: relative;
+            top: 200px;
+            width: 600px;
+        }
+        .tb tr{
+            height: 30px;
+        }
+
     </style>
 </head>
 
 <body>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>文件类型</th>
-                <th>名称</th>
-                <th>修改日期</th>
-                <th>大小</th>
-            </tr>
-        </tbody>
-    </table>
+    <div class="outer-container">
+            <table class="tb">
+                <tbody>
+                    <tr>
+                        <th>文件类型</th>
+                        <th>名称</th>
+                        <th>修改日期</th>
+                        <th>大小</th>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
 
 
+    <script src="./dateFormat.js"></script>
 
     <script>
         let xhr = new XMLHttpRequest();
@@ -42,16 +62,27 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 let data = JSON.parse(xhr.responseText);
+                console.log(data);
+                
                 let html = '';
+                let str = '';
                 for (let i = 0; i < data.length; i++) {
+                    if (/.html$/.test(data[i].name)) {
+                        str = '<td><img src="./icon/html.png" alt=""></td>';
+                    } else if (/.js$/.test(data[i].name)) {
+                        str = '<td><img src="./icon/js.png" alt=""></td>';
+                    } else {
+                        str = '<td><img src="./icon/folder.png" alt=""></td>';
+                    }
+                    let mtime=dateFormat(data[i].mtime, '');
                     html += '<tr>';
-                    html += '<td><img src="./icon/folder.png" alt=""></td>';
-                    html += '<td>' + data[i] + '</td>';
-                    html += '<td>2020-7-10</td>';
-                    html += '<td>100KB</td>';
+                    html += str;
+                    html += '<td>' + data[i].name + '</td>';
+                    html += '<td>' + mtime +  '</td>';
+                    html += '<td>' + data[i].size + '</td>';
                     html += '</tr>';
                 }
-                document.getElementsByTagName("tbody")[0].innerHTML+=html;
+                document.getElementsByTagName("tbody")[0].innerHTML += html;
             }
         }
         xhr.send();

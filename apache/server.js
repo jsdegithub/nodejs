@@ -45,18 +45,19 @@ server.on('request', function (req, res) {
         fs.readdir('./', function(err, files){
             let arr=[];
             for(let i=0; i<files.length; i++){
-                (function(i){
-                    fs.stat(files[i], function(err, data){
-                        let obj={};
-                        obj.name=files[i];
-                        obj.mtime=data.mtime;
-                        obj.size=data.size;
-                        arr.push(obj);
-                        if(i===files.length-1){
-                            res.end(JSON.stringify(arr));
-                        }
-                    });
-                })(i);
+                /* (function(i){
+                    
+                })(i); */
+                fs.stat(files[i], function(err, data){
+                    let obj={};
+                    obj.name=files[i];
+                    obj.mtime=data.mtime;
+                    obj.size=data.size;
+                    arr.push(obj);
+                    if(i===files.length-1){
+                        res.end(JSON.stringify(arr));
+                    }
+                });
             }
         })
     }else{

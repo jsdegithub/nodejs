@@ -12,7 +12,7 @@ server.on('request', function (req, res) {
             res.end(data);
         })
     }else if(url=='/itemlist'){
-        fs.readdir('./', function(err, files){
+        /* fs.readdir('./', function(err, files){
             let arr=[];
             let count=0;
             for(let i=0; i<files.length; i++){
@@ -40,6 +40,24 @@ server.on('request', function (req, res) {
             }
             // console.log(arr);
             
+        }) */
+
+        fs.readdir('./', function(err, files){
+            let arr=[];
+            for(let i=0; i<files.length; i++){
+                (function(i){
+                    fs.stat(files[i], function(err, data){
+                        let obj={};
+                        obj.name=files[i];
+                        obj.mtime=data.mtime;
+                        obj.size=data.size;
+                        arr.push(obj);
+                        if(i===files.length-1){
+                            res.end(JSON.stringify(arr));
+                        }
+                    });
+                })(i);
+            }
         })
     }else{
         url='.'+url;

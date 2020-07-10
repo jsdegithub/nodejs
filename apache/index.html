@@ -37,6 +37,12 @@
         .tb tr{
             height: 30px;
         }
+        .a_href{
+            text-decoration: none;
+        }
+        .a_href:hover{
+            text-decoration: underline;
+        }
 
     </style>
 </head>
@@ -80,7 +86,7 @@
                     let mtime=dateFormat(data[i].mtime, '');
                     html += '<tr>';
                     html += str;
-                    html += '<td>' + data[i].name + '</td>';
+                    html += '<td><a href="#" class="a_href">' + data[i].name + '</a></td>';
                     html += '<td>' + mtime +  '</td>';
                     html += '<td>' + data[i].size + '</td>';
                     html += '</tr>';

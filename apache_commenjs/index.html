@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            user-select: none;
+        }
+
+        body {
+            background-color: whitesmoke;
+        }
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        .outer-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .tb {
+            position: relative;
+            top: 200px;
+            width: 600px;
+        }
+
+        .tb tr {
+            height: 30px;
+        }
+
+        .a_href {
+            text-decoration: none;
+        }
+
+        .a_href:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="outer-container">
+        <table class="tb">
+            <tbody>
+                <tr>
+                    <th>文件类型</th>
+                    <th>名称</th>
+                    <th>修改日期</th>
+                    <th>大小</th>
+                </tr>
+
+                {{each data}}
+                <tr>
+                    {{set name = $value.name}}
+                    <% if (/.html$/.test(name)){%>
+                        <td><img src="./icon/html.png" alt=""></td>
+                    <%}else if(/.js$/.test(name)){%>
+                        <td><img src="./icon/js.png" alt=""></td>
+                    <%}else{%>
+                        <td><img src="./icon/folder.png" alt=""></td>
+                    <%}%>
+                    
+                    <td><a href="#" class="a_href">{{name}}</a></td>
+                    <td>{{$value.mtime}}</td>
+                    <td>{{$value.size}}</td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+
+</html>

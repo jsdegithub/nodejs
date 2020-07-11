@@ -1,0 +1,16 @@
+{
+  "name": "apache_commenjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dateFormat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "moment": "^2.27.0"
+  }
+}

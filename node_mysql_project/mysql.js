@@ -14,5 +14,10 @@ module.exports.getdata = function (callback) {
         if (error) throw error;
         callback(data);
     });
-    connection.end();
+}
+module.exports.getone=function(id, callback){
+    let sqls = 'SELECT * FROM onepiece WHERE id='+id;
+    connection.query(sqls, function (error, data, fields) {
+        callback(data);
+    });
 }

@@ -9,11 +9,9 @@ module.exports.watch=function(server){
         let method=req.method;
         if(method=='GET'){
             if(urlObj.pathname=='/'){
-                res.end(request_index_module.index);
+                request_index_module.getall(req, res);
             }else if(urlObj.pathname=='/getone'){
-                request_index_module.getone(urlObj.query.id, function(data){
-                    res.end(data);
-                });
+                request_index_module.getone(req, res);
             } else{
                 request_static_module.static(urls, res);
             }

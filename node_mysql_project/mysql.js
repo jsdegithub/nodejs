@@ -1,4 +1,4 @@
-var mysql = require('mysql');
+/* var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -18,6 +18,7 @@ module.exports.getdata = function (callback) {
 module.exports.getone=function(id, callback){
     let sqls = 'SELECT * FROM onepiece WHERE id='+id;
     connection.query(sqls, function (error, data, fields) {
+        console.log(data);
         callback(data);
     });
-}
+} */

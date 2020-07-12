@@ -1,13 +1,20 @@
 let template = require('art-template');
 template.defaults.root = './';
 
-let mysql_module = require('./mysql.js');
-mysql_module.getdata(data => {
-    module.exports.index = template('./index.html', { "data": data });
-});
-
-module.exports.getone=function(id, callback){
-    mysql_module.getone(id, function(data){
-        callback(template('./roleInfo.html', {'data':data}));
-    })
+let db = require('./db.js');
+let url = require('url');
+module.exports = {
+    getall: function (req, res) {
+        db.select(function (data) {
+            let html = template('./index.html', { "data": data });
+            res.end(html);
+        })
+    },
+    getone: function (req, res) {
+        let urlObj = url.parse(req.url, true);
+        db.where("id=" + urlObj.query.id).select(function (data) {
+            let html = template("./roleInfo.html", { "data": data });
+            res.end(html);
+        })
+    }
 }

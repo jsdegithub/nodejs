@@ -19,7 +19,7 @@ module.exports={
         if(this.wh==undefined){
             sqls="select * from onepiece";
         }else{
-            sqls="select * from onepiece where "+this.wh;
+            sqls="select * from onepiece where "+this.wh;  //where 后面有一个空格不能丢
             console.log(sqls);
         }
         connection.query(sqls, function (error, data, fields) {

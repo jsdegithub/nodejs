@@ -46,53 +46,60 @@
             display: block;
         }
 
-        .title{
+        .title {
             margin-top: 30px;
+        }
+
+        .container{
+            margin: 50px auto;
         }
     </style>
 </head>
 
 <body>
-    <div class="title">
-        <p><span style="color: teal; font-family: 'Ma Shan Zheng', cursive; font-size: 36px;">
-            海贼王</span>&nbsp;&nbsp;
-            <span style="color: teal; font-family: 'Ma Shan Zheng', cursive; font-size: 20px;">
-            角色管理器</span></p>
+    <div class="container">
+
+        <div class="title">
+            <p><span style="color: teal; font-family: 'Ma Shan Zheng', cursive; font-size: 36px;">
+                    海贼王</span>&nbsp;&nbsp;
+                <span style="color: teal; font-family: 'Ma Shan Zheng', cursive; font-size: 20px;">
+                    角色管理器</span></p>
+        </div>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>肖像</th>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>能力</th>
+                    <th>势力</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{each data}}
+                <tr>
+                    <td></td>
+                    <td>{{$value.id}}</td>
+                    <td>{{$value.name}}</td>
+                    <td>{{$value.ability}}</td>
+                    <td>{{$value.team}}</td>
+                    <td>
+                        <span><a href="/getone?id={{$value.id}}">详情</a></span>
+                        <span><a href="/update?id={{$value.id}}">修改</a></span>
+                        <span><a href="#">删除</a></span>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <div class="btn">
+            <button type="button" class="mui-btn mui-btn-success">添加角色</button>
+        </div>
+
     </div>
-
-    <div class="btn">
-        <button type="button" class="mui-btn mui-btn-success">添加角色</button>
-    </div>
-
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>肖像</th>
-                <th>编号</th>
-                <th>姓名</th>
-                <th>能力</th>
-                <th>势力</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{each data}}
-            <tr>
-                <td></td>
-                <td>{{$value.id}}</td>
-                <td>{{$value.name}}</td>
-                <td>{{$value.ability}}</td>
-                <td>{{$value.team}}</td>
-                <td>
-                    <span><a href="/getone?id={{$value.id}}">详情</a></span>
-                    <span><a href="#">修改</a></span>
-                    <span><a href="#">删除</a></span>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-
 </body>
 
 </html>

@@ -16,5 +16,22 @@ module.exports = {
             let html = template("./roleInfo.html", { "data": data });
             res.end(html);
         })
+    },
+    update_get: function(req, res){
+        let urlObj = url.parse(req.url, true);
+        db.where("id=" + urlObj.query.id).select(function (data) {
+            let html = template("./update.html", { "data": data });
+            res.end(html);
+        })
+    },
+    update_post:function(req, res){
+        let post_data='';
+        req.on('data', function(data_sending){
+            post_data+=data_sending;
+        });
+        req.on('end', function(){
+            console.log(post_data);
+            res.end();
+        })
     }
 }

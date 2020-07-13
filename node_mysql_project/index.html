@@ -46,6 +46,14 @@
             display: block;
         }
 
+        .mui-btn-success{
+            background-color: rgb(42, 184, 184);
+            border: none;
+        }
+        .mui-btn-success:hover{
+            background-color: rgb(29, 154, 154);
+        }
+
         .title {
             margin-top: 30px;
         }
@@ -96,7 +104,7 @@
                     <td>
                         <span><a href="/getone?id={{$value.id}}">详情</a></span>
                         <span><a href="/update?id={{$value.id}}">修改</a></span>
-                        <span><a href="#">删除</a></span>
+                        <span><a href="/delete?id={{$value.id}}">删除</a></span>
                     </td>
                 </tr>
                 {{/each}}
@@ -104,7 +112,7 @@
         </table>
 
         <div class="btn">
-            <button type="button" class="mui-btn mui-btn-success">添加角色</button>
+            <a href="/add"><button type="button" class="mui-btn mui-btn-success">添加角色</button></a>
         </div>
 
     </div>

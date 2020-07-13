@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onepiece</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./mui/css/mui.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+        }
+
+        * {
+            user-select: none;
+            outline: none;
+        }
+
+        table tr {
+            text-align: center;
+        }
+
+        table th:last-child {
+            width: 200px;
+        }
+
+        table tr span {
+            margin: 10px;
+        }
+
+        table th {
+            text-align: center;
+        }
+
+        .add_role {
+            text-align: center;
+            margin: 100px auto;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            text-align: center;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .title {
+            margin-top: 30px;
+        }
+
+        .container{
+            margin: 50px auto;
+        }
+
+        .mui-toast-message{
+            background-color: #dff0d8;
+            color: rgba(0, 0, 0, 0.707);
+        }
+        .mui-toast-container{
+            top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="title">
+            <p><span style="color: teal; font-family: 'Ma Shan Zheng', cursive; font-size: 36px;">
+                    海贼王</span>&nbsp;&nbsp;
+                <span style="color: teal; font-family: 'Ma Shan Zheng', cursive; font-size: 20px;">
+                    角色管理器</span></p>
+        </div>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>肖像</th>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>能力</th>
+                    <th>势力</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{each data}}
+                <tr>
+                    <td></td>
+                    <td>{{$value.id}}</td>
+                    <td>{{$value.name}}</td>
+                    <td>{{$value.ability}}</td>
+                    <td>{{$value.team}}</td>
+                    <td>
+                        <span><a href="/getone?id={{$value.id}}">详情</a></span>
+                        <span><a href="/update?id={{$value.id}}">修改</a></span>
+                        <span><a href="#">删除</a></span>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <div class="btn">
+            <button type="button" class="mui-btn mui-btn-success">添加角色</button>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script src="./mui/js/mui.min.js"></script>

@@ -1,8 +1,9 @@
 let template = require('art-template');
 template.defaults.root = './';
-
 let db = require('./db.js');
 let url = require('url');
+let querystring = require('querystring');
+
 module.exports = {
     getall: function (req, res) {
         db.select(function (data) {
@@ -17,21 +18,42 @@ module.exports = {
             res.end(html);
         })
     },
-    update_get: function(req, res){
+    update_get: function (req, res) {
         let urlObj = url.parse(req.url, true);
         db.where("id=" + urlObj.query.id).select(function (data) {
             let html = template("./update.html", { "data": data });
             res.end(html);
         })
     },
-    update_post:function(req, res){
-        let post_data='';
-        req.on('data', function(data_sending){
-            post_data+=data_sending;
+    update_post: function (req, res) {
+        let post_data = '';
+        req.on('data', function (data_sending) {
+            post_data += data_sending;
         });
-        req.on('end', function(){
-            console.log(post_data);
-            res.end();
+        req.on('end', function () {
+            let urlObj = url.parse(req.url, true);
+            let data_obj = querystring.parse(post_data);
+            db.where("id=" + urlObj.query.id).update(data_obj, function (data) {
+                // res.end(data.toString());
+                if (data >= 1) {
+                    let str = "<script>window.onload = function () {mui.toast('修改成功', {duration: 1500});}</script>";
+                    res.setHeader('Content-type', 'text/html;charset=utf-8');
+                    db.select(function (data) {
+                        let html = template('./index.html', { "data": data });
+                        let result = html + str;
+                        res.end(result);
+                    })
+                } else {
+                    let str = "<script>window.onload = function () {mui.toast('未作任何修改', {duration: 1500});}</script>";
+                    res.setHeader('Content-type', 'text/html;charset=utf-8');
+                    let urlObj = url.parse(req.url, true);
+                    db.where("id=" + urlObj.query.id).select(function (data) {
+                        let html = template("./update.html", { "data": data });
+                        let result = html + str;
+                        res.end(result);
+                    })
+                }
+            });
         })
     }
 }

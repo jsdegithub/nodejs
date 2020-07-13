@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Information</title>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./mui/css/mui.min.css">
     <style>
         * {
             user-select: none;
@@ -25,39 +26,50 @@
             padding-top: 5px;
         }
 
-        table input{
+        table input {
             text-align: center;
         }
 
-        .panel-footer{
+        .panel-footer {
             text-align: center;
         }
 
-        .panel-footer button{
+        .panel-footer button {
             width: 30%;
             height: 30px;
             border: none;
             background-color: #dff0d8;
             border-radius: 5px;
         }
-        .panel-footer button:hover{
+
+        .panel-footer button:hover {
             background-color: #a9e4aa;
         }
-        .panel-footer button:active{
+
+        .panel-footer button:active {
             background-color: #dff0d8;
+        }
+
+        .mui-toast-message{
+            background-color: #dff0d8;
+            color: rgba(0, 0, 0, 0.707);
+        }
+        .mui-toast-container{
+            top: 30px;
         }
     </style>
 </head>
 
 <body>
-    <form action="/update" method="POST">
+    
+    <form action="/update?id={{data[0].id}}" method="POST">
         <div class="panel panel-success" style="width: 45%; margin: 100px auto;">
             <div class="panel-heading">{{data[0].name}}</div>
             <div class="panel-body" style="display: flex; justify-content: space-around;">
                 <img src="{{data[0].img}}" alt="">
                 <div class="introduce">{{data[0].introduce}}</div>
             </div>
-    
+
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -69,23 +81,22 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="text-align: center; vertical-align: middle;"><input type="text"
-                                    value="{{data[0].name}}"></td>
-                            <td style="text-align: center; vertical-align: middle;"><input type="text"
-                                    value="{{data[0].ability}}"></td>
-                            <td style="text-align: center; vertical-align: middle;"><input type="text"
-                                    value="{{data[0].team}}"></td>
+                            <td style="text-align: center; vertical-align: middle;"><input id="name" name="name"
+                                    type="text" value="{{data[0].name}}"></td>
+                            <td style="text-align: center; vertical-align: middle;"><input id="ability" name="ability"
+                                    type="text" value="{{data[0].ability}}"></td>
+                            <td style="text-align: center; vertical-align: middle;"><input id="team" name="team"
+                                    type="text" value="{{data[0].team}}"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-    
+
             <div class="panel-footer">
                 <button type="submit">提交修改</button>
             </div>
         </div>
     </form>
-    
 </body>
-
 </html>
+<script src="./mui/js/mui.min.js"></script>

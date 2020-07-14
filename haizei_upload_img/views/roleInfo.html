@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Information</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        *{
+            user-select: none;
+            outline: none;
+        }
+        img{
+            width: 100px;
+            height: 111.3px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="panel panel-success" style="width: 45%; margin: 100px auto;">
+        <div class="panel-heading">{{data[0].name}}</div>
+        <div class="panel-body">{{data[0].introduce}}</div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 25%; text-align: center; font-size: 16px; font-weight: bold;">肖像</th>
+                        <th style="width: 25%; text-align: center; font-size: 16px; font-weight: bold;">姓名</th>
+                        <th style="width: 25%; text-align: center; font-size: 16px; font-weight: bold;">能力</th>
+                        <th style="width: 25%; text-align: center; font-size: 16px; font-weight: bold;">势力</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <% if (data[0].img==''){ %>
+                            <td style="text-align: center;"><img src="/img/haizei_head.jpg" alt=""></td>
+                        <% } else { %>
+                            <td style="text-align: center;"><img src="{{data[0].img}}" alt=""></td>
+                        <% } %>
+                        <td style="text-align: center; vertical-align: middle;">{{data[0].name}}</td>
+                        <td style="text-align: center; vertical-align: middle;">{{data[0].ability}}</td>
+                        <td style="text-align: center; vertical-align: middle;">{{data[0].team}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="panel-footer"></div>
+    </div>
+</body>
+
+</html>

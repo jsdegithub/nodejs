@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" href="./mui/css/mui.min.css">
+    <style>
+        .mui-toast-message {
+            background-color: #dff0d8;
+            color: rgba(0, 0, 0, 0.707);
+        }
+
+        .mui-toast-container {
+            top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id='toastBtn' type="button" class="mui-btn mui-btn-blue mui-btn-outlined">
+        自动消失提示框
+    </button>
+    <p>哈哈哈哈哈哈哈哈哈哈哈哈</p>
+</body>
+
+</html>
+<script src="./mui/js/mui.min.js"></script>
+<script>
+    localStorage.setItem('flag', JSON.stringify({'flag': true}));
+</script>
+<script>
+    let flag=JSON.parse(localStorage.getItem('flag'));
+    if (flag) {
+        window.onload = function () {
+            mui.toast('未作任何修改', {
+                duration: 1500
+            });
+        }
+        localStorage.setItem('flag', JSON.stringify({'flag': false}));
+    }
+</script>

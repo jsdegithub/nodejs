@@ -143,7 +143,12 @@
             </div> -->
             <div class="panel-body" style="display: flex;justify-content: space-around; min-width: 300px;">
                 <div class="img_container">
-                    <img src="{{data[0].img}}" alt="">
+                    <% if (data[0].img==''){ %>
+                        <td style="text-align: center;"><img src="/img/haizei_head.jpg" alt=""></td>
+                    <% } else { %>
+                        <td style="text-align: center;"><img src="{{data[0].img}}" alt=""></td>
+                    <% } %>
+                    <!-- <img src="{{data[0].img}}" alt=""> -->
                 </div>
                 <div class="introduce wordwrap">
                     <input id="info" name="introduce" type="text" placeholder="在这里输入人物简介......">

@@ -33,12 +33,16 @@ module.exports={
             return;
         }
         let set='';
+        console.log(data);
         for(i in data){
+            if(/\d{13}$/.test(data[i])){
+                continue;
+            }
             set+=i+"='"+data[i]+"',";
         }
         set=set.slice(0, set.length-1);
         let sql="update onepiece set "+set+" where "+this.wh;
-        // console.log(sql);
+        console.log(sql);
         connection.query(sql, function(err, data){
             // console.log(data);
             callback(data.changedRows);

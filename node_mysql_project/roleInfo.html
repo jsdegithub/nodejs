@@ -35,7 +35,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="text-align: center;"><img src="{{data[0].img}}" alt=""></td>
+                        <% if (data[0].img==''){ %>
+                            <td style="text-align: center;"><img src="./img/haizei_head.jpg" alt=""></td>
+                        <% } else { %>
+                            <td style="text-align: center;"><img src="{{data[0].img}}" alt=""></td>
+                        <% } %>
                         <td style="text-align: center; vertical-align: middle;">{{data[0].name}}</td>
                         <td style="text-align: center; vertical-align: middle;">{{data[0].ability}}</td>
                         <td style="text-align: center; vertical-align: middle;">{{data[0].team}}</td>

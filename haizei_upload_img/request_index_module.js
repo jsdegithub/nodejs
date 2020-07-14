@@ -68,10 +68,10 @@ module.exports = {
             uploadDir: './static/upload_img'
         });
         form.parse(req, (err, fields, files) => {
-            fs.rename(files.img.path, './static/img/' + files.img.name, err => {
+            let random_filename=new Date().getTime() + files.img.name;
+            fs.rename(files.img.path, './static/img/' + random_filename, err => {
                 if (err) {
-                    /* console.log(err);
-                    res.end(); */
+                    // console.log(err);
                     let str = "<script>window.onload = function () {mui.toast('图片上传失败', {duration: 1500});}</script>";
                     res.setHeader('Content-type', 'text/html;charset=utf-8');
                     let urlObj = url.parse(req.url, true);
@@ -81,7 +81,7 @@ module.exports = {
                         res.end(result);
                     })
                 } else {
-                    fields.img = './img/' + files.img.name;
+                    fields.img = './img/' + random_filename;
                     let urlObj = url.parse(req.url, true);
                     db.where("id=" + urlObj.query.id).update(fields, function (data) {
                         if (data >= 1) {

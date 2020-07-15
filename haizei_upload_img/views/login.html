@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="/mui/css/mui.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            outline: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outer_container {
+            position: relative;
+            margin: 100px auto;
+            width: 800px;
+            height: 500px;
+            background: url("./img/namei4.jpg");
+            background-size: cover;
+            border-radius: 15px;
+            box-shadow: 15px 15px 15px rgb(178, 202, 235);
+        }
+
+
+        .login-box {
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            /* margin: 180px 0 0 650px; */
+            color: #000000;
+            /* text-align: center; */
+        }
+
+        .login-box h1 {
+            float: left;
+            border-bottom: 5px solid #4caf50;
+            margin-bottom: 30px;
+            padding: 13px 0;
+        }
+
+        .clear {
+            clear: left;
+        }
+
+        .input-box {
+            width: 68%;
+            height: 68%;
+            font-size: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #000000;
+            margin: 8px 0;
+            padding: 8px 0;
+        }
+
+        .input-box i {
+            margin-right: 10px;
+            margin-bottom: 0;
+            /* float: left; 使用float left会使图标和输入框文字不在同一水平线，除非同时设置输入框也为float left */
+            width: 26px;
+            text-align: center;
+        }
+
+        input {
+            background: none;
+            width: 68%;
+            color: #000000;
+            font-size: 18px;
+            /* padding: 8px 0 8px 10px; */
+            border: none;
+            /* border-bottom: 1x solid #000000; */
+            /* margin-bottom: 20px; */
+        }
+
+        input::placeholder {
+            font-size: 18px;
+            color: #000000;
+        }
+
+        .btn {
+            background: none;
+            border: 2px solid #000000;
+            color: #000000;
+            padding: 2px;
+            margin-top: 10px;
+            width: 68%;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .btn:active {
+            background: #00000080;
+            color: #ffffff;
+            border: 2px solid #00000080;
+        }
+
+        .mui-toast-message {
+            background-color: #dff0d8;
+            color: rgba(0, 0, 0, 0.707);
+        }
+
+        .mui-toast-container {
+            top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/login" method="POST">
+        <div class="outer_container">
+            <div class="login-box" style="position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            /* margin: 180px 0 0 650px; */
+            color: #000000;">
+                <h1 style="float: left;
+                border-bottom: 5px solid #4caf50;
+                margin-bottom: 30px;
+                padding: 13px 0;">Login</h1>
+                <div class="clear">
+                    <div class="input-box" style="width: 68%;
+                    height: 68%;
+                    font-size: 20px;
+                    padding-bottom: 15px;
+                    border-bottom: 1px solid #000000;
+                    margin: 8px 0;
+                    padding: 8px 0;">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input name="username" type="text" placeholder="Username" style="background: none;
+                        width: 68%;
+                        color: #000000;
+                        font-size: 18px;
+                        margin-bottom: 0;
+                        padding-bottom: 0;
+                        border: none;">
+                    </div>
+                    <div class="input-box" style="width: 68%;
+                    height: 68%;
+                    font-size: 20px;
+                    padding-bottom: 15px;
+                    border-bottom: 1px solid #000000;
+                    margin: 8px 0;
+                    padding: 8px 0;">
+                        <i class="fa fa-lock" aria-hidden="true" style="margin-right: 10px;
+                        margin-bottom: 0;
+                        /* float: left; 使用float left会使图标和输入框文字不在同一水平线，除非同时设置输入框也为float left */
+                        width: 26px;
+                        text-align: center;"></i>
+                        <input name="password" type="password" placeholder="Password" style="background: none;
+                        width: 68%;
+                        color: #000000;
+                        font-size: 18px;
+                        margin-bottom: 0;
+                        padding-bottom: 0;
+                        border: none;">
+                    </div>
+                    <button type="submit" class="btn">Sign in</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
+<script src="/mui/js/mui.min.js"></script>
